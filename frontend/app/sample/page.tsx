@@ -13,7 +13,7 @@ export default function Sample() {
       <ul>
         {conversations.map(
           (
-            conversation // Conversationsをループで取り出す
+            conversation, // Conversationsをループで取り出す
           ) => (
             <li key={conversation.id}>
               {(() => {
@@ -46,7 +46,7 @@ export default function Sample() {
                 }
               })()}
             </li>
-          )
+          ),
         )}
       </ul>
       <input
