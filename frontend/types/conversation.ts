@@ -1,4 +1,5 @@
 export interface Conversation {
+  id: string;
   type: "user" | "server" | "music";
 }
 
