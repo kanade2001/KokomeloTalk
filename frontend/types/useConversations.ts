@@ -1,16 +1,12 @@
 import { useCallback, useState } from "react";
-import { MusicConversation, TextConversation } from "./conversation";
+import { Conversation, MusicConversation } from "./conversation";
 
 export const useConversations = () => {
   const [conversations, setConversations] = useState<
-    (TextConversation | MusicConversation)[]
+    (Conversation | MusicConversation)[]
   >([]);
 
-  const addUserConversation = useCallback((text: string) => {
-    setConversations((prev) => [...prev, { id: "id", type: "user", text }]);
-  }, []);
-
-  const sendConversationsToServer = useCallback(async () => {
+  const getServerConversation = useCallback(async () => {
     try {
       const response = await fetch(
         "https://your-server-endpoint.com/api/conversations",
@@ -49,9 +45,17 @@ export const useConversations = () => {
     }
   }, [conversations]);
 
+  const addClientConversation = useCallback(
+    (text: string) => {
+      setConversations((prev) => [...prev, { id: "id", type: "client", text }]);
+      getServerConversation();
+    },
+    [getServerConversation]
+  );
+
   return {
     conversations,
-    addUserConversation,
-    sendConversationsToServer,
+    addClientConversation,
+    getServerConversation,
   };
 };
