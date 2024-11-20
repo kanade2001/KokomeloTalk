@@ -1,6 +1,6 @@
 export interface Conversation {
   id: string;
-  type: "client" | "server" | "music";
+  type: "client" | "server" | "system" | "music";
   text: string;
 }
 
