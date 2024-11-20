@@ -12,26 +12,36 @@ const UserInput: React.FC<InputBoxProps> = ({ onSend }) => {
   };
 
   const handleSend = () => {
-    onSend(input); // 親コンポーネントに入力内容を渡す
-    setInput(""); // 入力フィールドをリセット
+    if (input.trim() !== "") {
+      onSend(input); // 親コンポーネントに入力内容を渡す
+      setInput(""); // 入力フィールドをリセット
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!e.nativeEvent.isComposing && e.key === "Enter") {
+      // 日本語入力の確定中ではない場合に送信
+      handleSend();
+    }
   };
 
   return (
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Type your message..."
-          className="flex-1 p-2 text-base border border-gray-300 rounded"
-        />
-        <button
-          onClick={handleSend}
-          className="px-4 py-2 text-base font-medium text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none"
-        >
-          Send
-        </button>
-      </div>
+    <div className="flex gap-2">
+      <input
+        type="text"
+        value={input}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown} // Enterキー対応
+        placeholder="Type your message..."
+        className="flex-1 p-2 text-base border border-gray-300 rounded"
+      />
+      <button
+        onClick={handleSend}
+        className="px-4 py-2 text-base font-medium text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none"
+      >
+        Send
+      </button>
+    </div>
   );
 };
 

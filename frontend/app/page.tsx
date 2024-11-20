@@ -11,7 +11,6 @@ const App = () => {
   const handleSend = async (input: string) => {
     if (input.trim() === "") return; // 入力が空の場合は何もしない
     addClientConversation(input); // 会話リストに追加
-    await getServerConversation(); // サーバーに送信
   };
 
   return (
