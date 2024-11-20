@@ -2,6 +2,7 @@ import React from "react";
 import { Conversation, MusicConversation } from "../../types/conversation";
 import { ClientConversation } from "./components/client-conversation";
 import { ServerConversation } from "./components/server-conversation";
+import { SystemConversation } from "./components/system-conversation";
 
 interface ConversationListProps {
   conversations: (Conversation | MusicConversation)[];
@@ -19,6 +20,9 @@ const ConversationList: React.FC<ConversationListProps> = ({
           )}
           {conversation.type === "server" && (
             <ServerConversation text={conversation.text} />
+          )}
+          {conversation.type === "system" && (
+            <SystemConversation text={conversation.text} />
           )}
         </div>
       ))}

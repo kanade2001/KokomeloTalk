@@ -16,7 +16,7 @@ export const useConversations = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(conversations),
-        },
+        }
       );
 
       if (!response.ok) {
@@ -37,8 +37,14 @@ export const useConversations = () => {
       setConversations((prev) => [
         ...prev,
         {
+          // TODO: Delete
           id: "id",
           type: "server",
+          text: "Failed to send conversations to the server",
+        },
+        {
+          id: "id",
+          type: "system",
           text: "Failed to send conversations to the server",
         },
       ]);
@@ -50,7 +56,7 @@ export const useConversations = () => {
       setConversations((prev) => [...prev, { id: "id", type: "client", text }]);
       getServerConversation();
     },
-    [getServerConversation],
+    [getServerConversation]
   );
 
   return {
