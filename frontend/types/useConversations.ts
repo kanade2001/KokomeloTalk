@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import { Conversation, MusicConversation } from "./conversation";
 
+const API_URL = "http://localhost:8000";
+
 export const useConversations = () => {
   const [conversations, setConversations] = useState<
     (Conversation | MusicConversation)[]
@@ -8,16 +10,13 @@ export const useConversations = () => {
 
   const getServerConversation = useCallback(async () => {
     try {
-      const response = await fetch(
-        "https://your-server-endpoint.com/api/conversations",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(conversations),
-        }
-      );
+      const response = await fetch(`${API_URL}/conversation/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(conversations),
+      });
 
       if (!response.ok) {
         // サーバーからのレスポンスがエラーだった場合
