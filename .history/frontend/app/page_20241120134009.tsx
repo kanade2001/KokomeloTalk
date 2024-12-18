@@ -3,7 +3,6 @@ import React from "react";
 import { useConversations } from "../types/useConversations";
 import ConversationScreen from "../components/Conversation-Screen/ConversationScreen";
 import UserInput from "../components/User-Input/UserInput";
-import Header from "../components/Header/Header";
 
 const App = () => {
   const { conversations, addClientConversation, getServerConversation } =
@@ -16,7 +15,7 @@ const App = () => {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <Header/>
+      <h1>COCOMELO TALK</h1>
       <ConversationScreen conversations={conversations} />
       <UserInput onSend={handleSend} />
     </div>

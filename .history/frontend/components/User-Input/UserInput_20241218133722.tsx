@@ -29,7 +29,7 @@ const UserInput: React.FC<InputBoxProps> = ({ onSend }) => {
     <div className="flex gap-2">
       <input
         type="text"
-        value={input} 
+        value={input}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown} // Enterキー対応
         placeholder="Type your message..."
