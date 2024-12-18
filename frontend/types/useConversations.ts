@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Conversation, MusicConversation } from "./conversation";
 
 const API_URL = "http://localhost:8000";
@@ -28,7 +29,7 @@ export const useConversations = () => {
       const newConversations = data;
       setConversations((prev) => [
         ...prev,
-        { id: "id", type: "server", text: newConversations },
+        { id: uuidv4(), type: "server", text: newConversations },
       ]);
     } catch (error) {
       // サーバーへのリクエストが失敗した場合
@@ -37,12 +38,12 @@ export const useConversations = () => {
         ...prev,
         {
           // TODO: Delete
-          id: "id",
+          id: uuidv4(),
           type: "server",
           text: "Failed to send conversations to the server",
         },
         {
-          id: "id",
+          id: uuidv4(),
           type: "system",
           text: "Failed to send conversations to the server",
         },
@@ -52,7 +53,7 @@ export const useConversations = () => {
 
   const addClientConversation = useCallback(
     (text: string) => {
-      setConversations((prev) => [...prev, { id: "id", type: "client", text }]);
+      setConversations((prev) => [...prev, { id: uuidv4(), type: "client", text }]);
       getServerConversation();
     },
     [getServerConversation]
