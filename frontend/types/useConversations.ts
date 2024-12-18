@@ -37,12 +37,6 @@ export const useConversations = () => {
       setConversations((prev) => [
         ...prev,
         {
-          // TODO: Delete
-          id: uuidv4(),
-          type: "server",
-          text: "Failed to send conversations to the server",
-        },
-        {
           id: uuidv4(),
           type: "system",
           text: "Failed to send conversations to the server",
@@ -53,7 +47,10 @@ export const useConversations = () => {
 
   const addClientConversation = useCallback(
     (text: string) => {
-      setConversations((prev) => [...prev, { id: uuidv4(), type: "client", text }]);
+      setConversations((prev) => [
+        ...prev,
+        { id: uuidv4(), type: "client", text },
+      ]);
       getServerConversation();
     },
     [getServerConversation]
