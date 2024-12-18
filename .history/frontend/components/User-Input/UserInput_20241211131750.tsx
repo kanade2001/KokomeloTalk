@@ -33,7 +33,7 @@ const UserInput: React.FC<InputBoxProps> = ({ onSend }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown} // Enterキー対応
         placeholder="Type your message..."
-        className="flex-1 p-2 text-base border-gray-300 rounded border"
+        className="flex-1 p-2 text-base border-gray-300 rounded"
       />
       <button
         onClick={handleSend}
