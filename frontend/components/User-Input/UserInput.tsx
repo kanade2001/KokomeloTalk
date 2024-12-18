@@ -29,11 +29,11 @@ const UserInput: React.FC<InputBoxProps> = ({ onSend }) => {
     <div className="flex gap-2">
       <input
         type="text"
-        value={input}
+        value={input} 
         onChange={handleInputChange}
         onKeyDown={handleKeyDown} // Enterキー対応
         placeholder="Type your message..."
-        className="flex-1 p-2 text-base border-gray-300 rounded"
+        className="flex-1 p-2 text-base border-gray-300 rounded border"
       />
       <button
         onClick={handleSend}

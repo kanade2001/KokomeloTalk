@@ -1,5 +1,8 @@
 import { useCallback, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Conversation, MusicConversation } from "./conversation";
+
+const API_URL = "http://localhost:8000";
 
 export const useConversations = () => {
   const [conversations, setConversations] = useState<
@@ -8,16 +11,13 @@ export const useConversations = () => {
 
   const getServerConversation = useCallback(async () => {
     try {
-      const response = await fetch(
-        "https://your-server-endpoint.com/api/conversations",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(conversations),
-        }
-      );
+      const response = await fetch(`${API_URL}/conversation/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(conversations),
+      });
 
       if (!response.ok) {
         // サーバーからのレスポンスがエラーだった場合
@@ -29,7 +29,7 @@ export const useConversations = () => {
       const newConversations = data;
       setConversations((prev) => [
         ...prev,
-        { id: "id", type: "server", text: newConversations },
+        { id: uuidv4(), type: "server", text: newConversations },
       ]);
     } catch (error) {
       // サーバーへのリクエストが失敗した場合
@@ -37,13 +37,7 @@ export const useConversations = () => {
       setConversations((prev) => [
         ...prev,
         {
-          // TODO: Delete
-          id: "id",
-          type: "server",
-          text: "Failed to send conversations to the server",
-        },
-        {
-          id: "id",
+          id: uuidv4(),
           type: "system",
           text: "Failed to send conversations to the server",
         },
@@ -53,7 +47,10 @@ export const useConversations = () => {
 
   const addClientConversation = useCallback(
     (text: string) => {
-      setConversations((prev) => [...prev, { id: "id", type: "client", text }]);
+      setConversations((prev) => [
+        ...prev,
+        { id: uuidv4(), type: "client", text },
+      ]);
       getServerConversation();
     },
     [getServerConversation]
