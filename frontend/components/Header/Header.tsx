@@ -7,8 +7,8 @@ export default function Header() {
         <Image
           src="/cocomelotalk_logo.png"
           alt="logo"
-          width={500}
-          height={10}
+          width={400}
+          height={7}
         />
       </a>
     </header>
