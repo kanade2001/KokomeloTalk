@@ -4,6 +4,7 @@ from rest_framework import status
 
 class ConversationView(APIView):
     def post(self, request):
+        print(request.data['text'])
         # serializer = ConversationSerializer(data=request.data)
         # if serializer.is_valid(): 
         debug = [{"type": "server", "text": "感情が観測されました"}, {"type": "music", "text": "おすすめの曲"}]
