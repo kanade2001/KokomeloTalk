@@ -24,12 +24,11 @@ export const useConversations = () => {
         throw new Error("Failed to send conversations to the server");
       }
 
-      const data = await response.json();
+      const data: (Conversation | MusicConversation)[] = await response.json();
       console.log("Server response:", data);
-      const newConversations = data;
       setConversations((prev) => [
         ...prev,
-        { id: uuidv4(), type: "server", text: newConversations },
+        ...data.map((item) => ({ ...item, id: uuidv4() })),
       ]);
     } catch (error) {
       // サーバーへのリクエストが失敗した場合
