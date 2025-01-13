@@ -2,3 +2,12 @@ Django
 psycopg2
 djangorestframework
 django-cors-headers
+
+
+torch
+numpy
+gdown
+transformers
+protobuf
+fugashi
+unidic_lite
