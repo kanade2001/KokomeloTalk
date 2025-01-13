@@ -1,6 +1,5 @@
 # 必要なモジュールのインストール/インポート
 import torch
-import numpy as np
 import os
 import gdown
 
@@ -11,11 +10,15 @@ folder_id = "1YmF_3TihtXOEELXUr_ShG1kT4rIIzgef"
 
 # ダウンロード先ディレクトリ
 # save_dir = "/content/trained_model"
-save_dir = os.path.join(os.getcwd(), "trained_model")
-os.makedirs(save_dir, exist_ok=True)
 
-# gdownを使ってフォルダ全体をダウンロード
-gdown.download_folder(f"https://drive.google.com/drive/folders/{folder_id}", output=save_dir, quiet=False)
+save_dir = os.path.join(os.getcwd(), "trained_model")
+
+if os.path.exists(save_dir):
+    pass # 既にフォルダが存在する場合は何もしない
+else:
+    os.makedirs(save_dir)
+    # gdownを使ってフォルダ全体をダウンロード
+    gdown.download_folder(f"https://drive.google.com/drive/folders/{folder_id}", output=save_dir, quiet=False)
 
 # モデルとトークナイザを読み込み
 from transformers import AutoModelForSequenceClassification, AutoTokenizer

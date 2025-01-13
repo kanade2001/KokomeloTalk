@@ -57,4 +57,5 @@ def system():
             response = out(input_text)
             print(response)    
 
-system()
+if __name__ == "__main__":
+    system()
