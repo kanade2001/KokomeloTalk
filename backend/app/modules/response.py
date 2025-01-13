@@ -1,8 +1,8 @@
 import sys
 # 感情判断
-from emotion_estimate import analyze_emotion
+from .emotion_estimate import analyze_emotion
 # 音楽推薦
-from music_search import main
+from .music_search import main
 
 def out(input_text):
     # 入力文から８つの感情と数値を辞書型で取得

@@ -1,6 +1,6 @@
 import numpy as np
-from setup import loaded_model
-from setup import loaded_tokenizer
+from .setup import loaded_model
+from .setup import loaded_tokenizer
 
 # 感情名（日本語）を定義
 emotion_names_jp = ['喜び', '悲しみ', '怒り', '恐れ', '嫌悪', '驚き', '信頼', '期待'] # 例として8つの感情を想定
