@@ -4,8 +4,10 @@ from rest_framework import status
 
 class ConversationView(APIView):
     def post(self, request):
+        print(request.data['text'])
         # serializer = ConversationSerializer(data=request.data)
         # if serializer.is_valid(): 
+        debug = [{"type": "server", "text": "感情が観測されました"}, {"type": "music", "text": "おすすめの曲"}]
         if True:
-            return Response("OK", status=status.HTTP_201_CREATED)
+            return Response(debug, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
