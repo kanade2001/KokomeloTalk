@@ -7,7 +7,19 @@ const API_URL = "http://localhost:8000";
 export const useConversations = () => {
   const [conversations, setConversations] = useState<
     (Conversation | MusicConversation)[]
-  >([]);
+  >([
+    { type: "server", id: uuidv4(), text: "こんにちは！COCOMELO TALKです！" },
+    {
+      type: "server",
+      id: uuidv4(),
+      text: "文章から感情を推定しておすすめの音楽を教えるよ",
+    },
+    {
+      type: "server",
+      id: uuidv4(),
+      text: "下のメッセージ欄から何か話しかけてみてね！",
+    },
+  ]);
 
   const getServerConversation = useCallback(
     async (text: string) => {
