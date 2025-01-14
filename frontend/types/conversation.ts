@@ -6,5 +6,6 @@ export interface Conversation {
 
 export interface MusicConversation extends Conversation {
   type: "music";
-  musicUrl: string;
+  music_artist: string;
+  music_url: string;
 }

@@ -3,12 +3,14 @@ import { Conversation, MusicConversation } from "../../types/conversation";
 import { ClientConversation } from "./components/client-conversation";
 import { ServerConversation } from "./components/server-conversation";
 import { SystemConversation } from "./components/system-conversation";
-
+import { MusicConversationComponent } from "./components/music-conversation";
 interface ConversationListProps {
   conversations: (Conversation | MusicConversation)[];
 }
 
-const ConversationList: React.FC<ConversationListProps> = ({ conversations }) => {
+const ConversationList: React.FC<ConversationListProps> = ({
+  conversations,
+}) => {
   // スクロール対象のコンテナを参照する
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -34,6 +36,13 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations }) =>
           )}
           {conversation.type === "system" && (
             <SystemConversation text={conversation.text} />
+          )}
+          {conversation.type === "music" && (
+            <MusicConversationComponent
+              text={conversation.text}
+              artist={(conversation as MusicConversation).music_artist}
+              url={(conversation as MusicConversation).music_url}
+            />
           )}
         </div>
       ))}
